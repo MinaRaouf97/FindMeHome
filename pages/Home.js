@@ -11,16 +11,30 @@ const Home = () =>{
         searchText: ""
     });
 
-    const [searchPropList , setSearchPropList] = useState([])
-
+    const [selected, setSelected] = useState([]);
 
     const AllPropApi = 'http://127.0.0.1:8000/api/allproperty'
     const AllGovApi = ' http://127.0.0.1:8000/api/allgovernorate'
     const searchPropAPi = ' http://127.0.0.1:8000/api/search/'
+    const filterByGovAPI = ' http://127.0.0.1:8000/api/filter/'
 
 
     const reqOneAllProp = axios.get(AllPropApi);
     const reqTwoAllGov = axios.get(AllGovApi);
+    function getFilteredByGov(state){
+        axios
+        // console.log(searchProp.searchText)
+        .get(`${filterByGovAPI}${state}`)
+
+        .then((res) => {
+            setPropList(res.data);
+
+        })
+        .catch((err) => console.log(err))
+
+    }
+
+ 
 
 
     const handleEvent = (e) => {
@@ -32,7 +46,26 @@ const Home = () =>{
             });
 
         }
+        if(e.target.name === "checkbox"){
 
+            const checked = e.target.checked;
+
+            console.log(checked)
+            if (checked){
+                setSelected(selected => [...selected,e.target.value])
+ 
+               
+            }
+            else if (checked === false){
+                const id = e.target.value
+                setSelected(selected.filter( item => item !== id))
+
+            }
+            console.log(selected)
+                    
+
+            }
+      
     }
 
     const handelSubmit = (e) => {
@@ -42,14 +75,14 @@ const Home = () =>{
             .get(`${searchPropAPi}${searchProp.searchText}`)
             .then((res) => {
                 console.log(res.data)
-                setPropList(res.data) 
+                setPropList(res.data)
             })
             .catch((err) => console.log(err))
 
 
-
-
     }
+
+
 
     useEffect(()=>{
 
@@ -59,19 +92,44 @@ const Home = () =>{
             setPropList(responses[0].data)
             setGovList(responses[1].data)
 
+
         }))
         .catch((err)=>console.log(err))
-   
+     
     },[])
     useEffect(()=>{
-   
+        
+        
     },[propList])
+
+    useEffect(()=>{
+        if (selected === undefined || selected.length == 0){
+            axios
+            .get(`${AllPropApi}`)
+            .then((res) => {setPropList(res.data)})
+            .catch((err) => console.log(err))
+        }
+        else {
+        axios
+        .get(`${filterByGovAPI}${selected}`)
+        .then((res) => {setPropList(res.data)})
+        .catch((err) => console.log(err))
+    }
+        
+
+    },[selected])
+
+
+
+    
+    // console.log(checkedState)
+    // console.log(goveLength)
 
     return(
         <>
 
-            <div className='container-xxl bg-dark'>  
-                
+            <div className='container-xxl bg-dark'>
+
                 <div className="row d-flex justify-content-end align-items-center my-2">
                     <div className="col-md-5 my-2 ">
 
@@ -95,29 +153,37 @@ const Home = () =>{
                         {govList.map((gov) => {
                             return (
                                 <div key={gov.id} className="mb-3">
-                                <Form.Check 
-                                    className='text-light' 
+                                <Form.Check
+                                    className='text-light'
                                     type='checkbox'
                                     id={gov.id}
                                     label={gov.name}
                                     
+                                    onChange={(e) => handleEvent(e)}
+                                    value={gov.id}
+                                    name="checkbox"
+                                    //checked={checked.type}
+                                    
+                                    
+
+
                                 />
 
-                           
+
                             </div>
                             )
                         })}
                         {/* {['checkbox'].map((type) => (
                             <div key={`default-${type}`} className="mb-3">
-                                <Form.Check 
-                                    className='text-light' 
+                                <Form.Check
+                                    className='text-light'
                                     type={type}
                                     id={`default-${type}`}
                                     label={`default ${type}`}
-                                    
+
                                 />
 
-                           
+
                             </div>
                     ))} */}
                     </Form>
@@ -156,7 +222,7 @@ const Home = () =>{
                                                 </Card.Body>
                                             {/* </Link> */}
                                         </Card>
-                                
+
                                 </div>
                             )
                         })}
@@ -166,11 +232,10 @@ const Home = () =>{
             </div>
 
             </div>
-        
-            
+
         </>
     )
-    
+
 }
 
 export default Home ;
