@@ -2,10 +2,11 @@
 import './App.css';
 // import LoginUser from './components/login';
 // import RegisterUser from './components/register';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"; 
+import { BrowserRouter as Router, Route, Switch  } from "react-router-dom"; 
 
 import Home from './pages/Home';
 import NavBar from './components/Navbar' ;
+import LoginUi from './pages/LoginUi';
 //import Details from './pages/details';
 // import FavFilms from './pages/favouriteFilm';
 // import { LanguageContext } from './context/changeLanguage';
@@ -27,6 +28,7 @@ function App() {
 
       <Switch>
         <Route path={"/"} exact component={Home}></Route>
+        <Route path={"/login"} exact component={LoginUi}></Route>
 
       </Switch>
 
