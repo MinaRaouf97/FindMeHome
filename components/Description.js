@@ -1,6 +1,6 @@
 import React from 'react';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
+import {Tabs} from 'react-bootstrap';
+import {Tab} from 'react-bootstrap';
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';

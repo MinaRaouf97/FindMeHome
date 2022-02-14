@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import Image from 'react-bootstrap/Image'
+import {Image} from 'react-bootstrap'
 
 const Navbar = () => {
   return (
@@ -41,6 +41,11 @@ const Navbar = () => {
               <li className="nav-item">
                 <Link className="nav-link" to="/profile">
                   Profile
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/userinfo">
+                  User Info
                 </Link>
               </li>
               

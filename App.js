@@ -17,6 +17,7 @@ import NavBar from './components/Navbar';
 import PropInfo from './pages/PropInfo';
 import LoginUi from './pages/LoginUi';
 import Myprofile from './pages/profile';
+import UserInfo from './pages/UserInfo';
 import Anyprofile from './pages/anyuser';
 
 //import Details from './pages/details';
@@ -45,6 +46,7 @@ export default function App() {
         <Route path={"/login"} exact component={LoginUi}></Route>
         <Route path={"/propInfo"} exact component={PropInfo}></Route>
         <Route path={"/profile"} exact component={Myprofile}></Route>
+        <Route path={"/userinfo"} exact component={UserInfo}></Route>
         <Route path={"/:userprofile"} exact component={Anyprofile}></Route>
 
 

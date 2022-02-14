@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useContext } from 'react';
 import axios from "axios";
-import Form from 'react-bootstrap/Form'
-import Card from 'react-bootstrap/Card'
+import {Form} from 'react-bootstrap'
+import {Card} from 'react-bootstrap'
 
 
 const Home = () =>{
