@@ -16,6 +16,8 @@ import Home from './pages/Home';
 import NavBar from './components/Navbar';
 import PropInfo from './pages/PropInfo';
 import LoginUi from './pages/LoginUi';
+import Myprofile from './pages/profile';
+import Anyprofile from './pages/anyuser';
 
 //import Details from './pages/details';
 // import FavFilms from './pages/favouriteFilm';
@@ -41,7 +43,10 @@ export default function App() {
       <Switch>
         <Route path={"/"} exact component={Home}></Route>
         <Route path={"/login"} exact component={LoginUi}></Route>
-        <Route path={"/PropInfo"} exact component={PropInfo}></Route>
+        <Route path={"/propInfo"} exact component={PropInfo}></Route>
+        <Route path={"/profile"} exact component={Myprofile}></Route>
+        <Route path={"/:userprofile"} exact component={Anyprofile}></Route>
+
 
       </Switch>
 
