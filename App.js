@@ -16,6 +16,7 @@ import Home from './pages/Home';
 import NavBar from './components/Navbar';
 import PropInfo from './pages/PropInfo';
 import LoginUi from './pages/LoginUi';
+import Form from './src/pages/Form';
 
 //import Details from './pages/details';
 // import FavFilms from './pages/favouriteFilm';
@@ -42,6 +43,7 @@ export default function App() {
         <Route path={"/"} exact component={Home}></Route>
         <Route path={"/login"} exact component={LoginUi}></Route>
         <Route path={"/PropInfo"} exact component={PropInfo}></Route>
+        <Route path={"/addprop"} exact component={Form}></Route>
 
       </Switch>
 
